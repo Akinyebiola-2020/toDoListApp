@@ -1,0 +1,190 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+}	
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px auto;
+	background: grey;
+}
+
+.container{
+	width: 300px;
+	background: linear-gradient(yellow, green, purple);
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
+
+}
+
+h2{
+	color: black;
+	text-align: center;
+	text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/*searchBar Section Starts here*/
+.searchBar{
+	width: 250px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	margin-top: 5px;
+	margin-left: 55px;
+}
+
+
+#searchInput{
+	width: 	200px;
+	height: 30px;
+	border-radius:5px;
+border: 1px sol1d black;
+	padding-left: 25px;
+	position: relative;
+	border: none;
+	outline: none;
+	
+	
+
+}
+
+#searchInput:hover{
+	background: black;
+	transition: all 2.5s ease-in-out;
+	font-size: 18px;
+	color: white;
+}
+
+
+/*InputText AddBtn Section Starts here*/
+#wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#wrapper button {
+	width: 90px;
+	height: 35px;
+	background: blue;
+	border-radius: 8px;
+	font-size: 18px;
+	color: white;
+	cursor: pointer;
+	margin-left: -40px;
+}
+
+#wrapper input{
+	margin-right: 10px;
+	outline: none;
+	border: none;
+	border-bottom: 2px solid black;
+}
+
+
+/*Details about Number of List Items Enter Starts Here*/
+#task{
+	padding-left: 15%;
+	margin: 20px auto;
+}
+
+/*List Items Container Starts here*/
+#addElement{
+	width: 90%;
+	margin: 10px auto;
+	padding: 0 10px;
+}
+
+
+ul{
+	list-style: none;
+}
+
+li{
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	font-family: monospace;
+	border-bottom: 1px solid black;
+	font-size: 16px;
+}
+
+li:nth-child(odd){
+	background: grey;
+	color: black;
+}
+li:nth-child(even){
+	background: lightgrey;
+	color: black;
+}
+
+
+li button{
+	border-bottom: 1px solid black;
+	padding: 2px;
+	cursor: pointer;
+	background: coral;
+	border-radius: 3px;
+	margin-left: 8px;
+}
+
+/*Save and clearAll Div Section Starts here*/
+#saveAndClearDiv{
+	width: 200px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	gap: 10px;
+}
+
+#clearAll, #save{
+	width: 100px;
+	cursor: pointer;
+	padding: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	background: magenta;
+	color: white;
+	border-radius: 8px;
+}
+
+#save{
+	background: green;
+}
+
+#save:hover{
+	background:black;
+}
+
+#clearAll:hover{
+	background: darkcyan;
+	color: black;
+}
+
+/* Error Messsae when Add Btn is Click With Empty InputText */
+#error{
+	color: white;
+	display: none;
+	text-align: center;
+	font-size: 16px;
+}
+
+
+
+
+
+
+

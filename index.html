@@ -1,0 +1,189 @@
+<!Doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>To do List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
+
+
+</head>
+
+<body>
+
+	 <div class="app"> 
+		<div class="container">
+			<h2>To-Do List App</h2>
+			<div class="searchBar">
+				<input type="text" placeholder="Search task..." id="searchInput"> <!--Search Input Text-->
+			</div>
+
+			<div id="wrapper">
+				<input type="text" placeholder="Enter your task..." id="inputText">
+				<button id="add-btn">Add</button>
+			</div>
+
+			<div id="task">
+				<p id="pending-tasks">
+				 You have 
+			    <span class = "countValue">0</span> task(s) to complete
+				</p>
+			</div>
+			
+			<!-- List Items Div Section -->
+			<div id="addElement">
+				<ul class="listItems"> 	 	
+				</ul>
+			</div>
+
+			<!-- Save and clearAll Div Btn -->
+			<div id="saveAndClearDiv">
+				<button id="clearAll">Clear Tasks</button>
+				<button id="save">Save</button>
+			</div>
+			
+			<!-- Error Messsae when Add Btn is Click With Empty InputText -->
+			<p id="error"> Enter the Task that you would like to do!</p>
+
+		</div>
+		
+	
+	</div>
+
+
+	
+
+
+
+
+<script type="text/javascript">
+
+	const saveData = document.getElementById("save"); //Save to LocalStorage Variable
+	const listItem = document.querySelector(".listItems");//container to listItems Variable
+	const countValue = document.querySelector(".countValue");
+	const storedInput = localStorage.getItem("data"); //StoredInput localStorage getItem
+	const storedCountValue = localStorage.getItem("number");//StoredCountvalue localStorage getItem
+		
+	// Save The listItem to localStorage
+	if(storedInput){
+		listItem.innerHTML = storedInput;
+	}
+
+	const saveToLocalStorage = ()=>{
+		localStorage.setItem("data", listItem.innerHTML)	
+	}
+
+	saveData.addEventListener("click", saveToLocalStorage);
+
+
+
+	// Save the countValue to localStorage
+	if(storedCountValue){
+		countValue.innerHTML = storedCountValue
+	}
+
+    const saveCountValue = ()=>{
+		localStorage.setItem("number", countValue.innerHTML)
+	}
+
+	saveData.addEventListener("click", saveCountValue);
+
+
+   // SEARCH FILTER START HERE
+	const searchInput = document.getElementById("searchInput");
+		   searchInput.addEventListener("keyup", ()=>{
+
+		   searchInputVal = searchInput.value;
+		      const list = document.getElementsByTagName("li");
+		      	 for (var i = 0; i < list.length; i++) {
+
+		      		if(list[i].innerHTML.toLowerCase().includes(searchInputVal)){
+		      			list[i].style.display = "";
+		      		}else{
+		      			list[i].style.display = "none"
+		      		}
+		      	}
+		      
+		      }) 
+
+
+
+		// ADD LIST OF WHAT TO DO
+	const error = document.getElementById("error");
+	const addBtn = document.getElementById("add-btn");
+	const inputText = document.getElementById("inputText");
+	
+	// setTimeout function of 3 seconds for error message when what to do input is empty
+    function enterWhatToDo () {
+        setTimeout(() =>{
+         	error.style.display = "none"
+         	  }, 3000)
+         }
+
+	addBtn.addEventListener("click", ()=> {
+ 
+       if (inputText.value == "" || inputText.value.trim() == ""){
+          	// if the inputText is empty
+          		error.style.display = "block";
+          		error.style.color = "red";
+          		enterWhatToDo();	
+        }else{
+
+            const countValue = document.querySelector(".countValue");
+
+			countValue.innerHTML ++; // Increase the countValue by 1 on adding items 
+             	
+            const list = document.querySelector(".listItems");
+           	
+            let li = document.createElement("li");   // Create li
+
+            // appendChild to li created
+            li.innerHTML =`${inputText.value.toLowerCase()}<button onclick="remove(this)">Delete</button>`;
+
+         
+          	list.appendChild(li); //Append Ul to its child (Li)
+           }
+
+         	inputText.value = ""; // inputText should become empty on clicking Add button
+
+		});
+
+
+
+  		 // REMOVE ITEM FROM THE LIST
+	function remove(x){
+		countValue.innerHTML --; // Decrease the countValue by 1
+
+		 let verify = confirm("Are you sure to delete ?");// verify from user before delete function is excuted
+
+		 if(verify == true){ 
+		   	
+		   	var li = x.parentNode;// if okay is press, then delete
+
+			li.parentNode.removeChild(li);
+
+		}else{	
+		   	   countValue.innerHTML++; // If cancell is press, then increase the count by 1
+		 }
+	}
+
+
+
+     			// CLEARALL list items
+	let clearAll = document.querySelector("#clearAll");
+
+		clearAll.addEventListener("click", () => {	
+			// All the entered tasks should get clear once a clearAll button is clicked
+			if(confirm("Are you sure?")){
+				const list = document.querySelector(".listItems");
+					list.innerHTML = "";
+					countValue.innerHTML = 0;
+					} 
+				})
+		
+</script>
+</body>
+</html>
+
+
